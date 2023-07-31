@@ -1,0 +1,13 @@
+Refactoring Decisions:
+1. A separate connection microservice that makes use of message passing across the REST API.
+2. I developed a microservice for a different person that makes advantage of REST API message forwarding.
+3. I developed a unique microservice for locations that makes use of gRPC and Kafka message forwarding.
+
+
+Decision Justifications:
+1. To reduce complexity when users access the website, I built a connection microservice utilizing the REST API.
+After refactoring the people and location microservices, I worked on the connection microservice final. Since it's customer-facing, selecting REST as the message-passing option would be a wise decision.
+
+2. Since the main application doesn't heavily rely on a person microservice, I made one. In this situation, designing a RESTful API would be appropriate given the requirement to acquire and post user data through http. I consider the RESTful API to be applicable because it's also required to handle each request separately.
+
+3. Since mobile devices should simultaneously receive position information, a message queue like Kafka is required in this scenario. The refactoring must address the issue of processing each location even as the traffic increases. Kafka will help with this. Furthermore, it is essential to place gRPC before Kafka in order to guarantee that the data is correctly organized before being sent to the database. In addition to ensuring security, this will also ensure that the data is transmitted quickly.

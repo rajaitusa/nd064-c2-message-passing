@@ -1,0 +1,112 @@
+swagger: '2.0'
+paths:
+  /api/locations:
+    parameters:
+      - in: query
+        description: ID of the location
+        name: location_id
+        type: string
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: rajaitusa_getlocres
+      tags:
+        - UdaConnect
+    post:
+      responses:
+        '200':
+          description: Success
+      operationId: rajaitusa_postlocres
+      tags:
+        - UdaConnect
+  /api/locations/{location_id}:
+    parameters:
+      - in: path
+        description: ID of the location
+        name: location_id
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: rajaitusa_getlocres
+      tags:
+        - UdaConnect
+    post:
+      responses:
+        '200':
+          description: Success
+      operationId: rajaitusa_postlocres
+      tags:
+        - UdaConnect
+  /api/persons:
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: rajaitusa_getperres
+      tags:
+        - UdaConnect
+    post:
+      responses:
+        '200':
+          description: Success
+      operationId: rajaitusa_postperres
+      tags:
+        - UdaConnect
+  /api/persons/{person_id}:
+    parameters:
+      - in: path
+        description: ID of the person
+        name: person_id
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: rajaitusa_getperres
+      tags:
+        - UdaConnect
+  /api/persons/{person_id}/connection:
+    parameters:
+      - in: query
+        description: Proximity of  user (meters)
+        name: distance
+        type: string
+      - in: query
+        description: Enter end date
+        name: end_date
+        type: string
+      - in: query
+        description: Enter start date
+        name: start_date
+        type: string
+      - name: person_id
+        in: path
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: rajaitusa_getconndatares
+      tags:
+        - UdaConnect
+info:
+  title: UdaConnect API
+  version: 0.1.0
+produces:
+  - application/json
+consumes:
+  - application/json
+tags:
+  - name: UdaConnect
+    description: Project for people connection through geo location.
+responses:
+  ParseError:
+    description: When a mask can't be parsed
+  MaskError:
+    description: When any error occurs on mask

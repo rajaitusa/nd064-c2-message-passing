@@ -1,0 +1,7 @@
+my-cluster-zookeeper-0-kafka-0.my-cluster-zookeeper-0-kafka-headless.kafka.svc.cluster.local:9092
+
+
+kubectl -n kafka run kafka-producer -ti --image=quay.io/strimzi/kafka:0.26.0-kafka-3.0.0 --rm=true --restart=Never -- bin/kafka-console-producer.sh --broker-list my-cluster-zookeeper-0-kafka-0.my-cluster-zookeeper-0-kafka-headless.kafka.svc.cluster.local:9092 --topic location
+
+
+kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.26.0-kafka-3.0.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-zookeeper-0-kafka-0.my-cluster-zookeeper-0-kafka-headless.kafka.svc.cluster.local:9092 --topic location --from-beginning

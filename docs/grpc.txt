@@ -1,0 +1,31 @@
+#GRPC documentation of the location endpoint  
+
+syntax = "proto3";
+
+message LocationMessage {
+  int32 person_id = 1;
+  float latitude = 2;
+  float longitude = 3;
+}
+
+message Empty {
+}
+
+message LocationMessageList {
+  repeated LocationMessage location = 1;
+}
+
+service LocationService {
+    rpc Create(LocationMessage) returns (LocationMessage);
+    rpc Get(Empty) returns (LocationMessageList);
+}
+
+
+#Make a sample request
+
+Clone rajaitusa/nd064-c2-message-passing
+Install and run python.
+Install the requirements in nd064-c2-message-passing/modules/location-producer/
+pip install -r requirements.txt
+Navigate to "nd064-c2-message-passing/modules/location-producer/app/udaconnect" and Run writer.py
+python writer.py
